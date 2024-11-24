@@ -1,0 +1,22 @@
+def timeConversion(s):
+    # Extract the hour, minutes, seconds, and period (AM/PM) from the string
+    hour = int(s[:2])
+    minutes_seconds = s[2:8]
+    period = s[-2:]
+
+    if period == "AM":
+        # Convert 12 AM to 00 for 24-hour format
+        if hour == 12:
+            hour = 0
+    else:  # PM
+        # Add 12 to the hour unless it's 12 PM (no change needed)
+        if hour != 12:
+            hour += 12
+
+    # Format the hour as a 2-digit string and return the converted time
+    return f"{hour:02d}{minutes_seconds}"
+
+# Input handling
+if __name__ == "__main__":
+    s = input()  # Read the time in 12-hour format
+    print(timeConversion(s))
