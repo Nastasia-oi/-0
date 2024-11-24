@@ -1,0 +1,23 @@
+def migratoryBirds(arr):
+    # Initialize a frequency array for bird types (1 to 5)
+    frequency = [0] * 6  # Index 0 will remain unused
+
+    # Count the occurrences of each bird type
+    for bird in arr:
+        frequency[bird] += 1
+
+    # Find the type with the maximum frequency
+    max_count = max(frequency)
+    for bird_type in range(1, 6):
+        if frequency[bird_type] == max_count:
+            return bird_type
+
+# Example usage
+if __name__ == "__main__":
+    # Sample Input 0
+    arr = [1, 4, 4, 4, 5, 3]
+    print(migratoryBirds(arr))  # Output: 4
+
+    # Sample Input 1
+    arr = [1, 2, 3, 4, 5, 4, 3, 2, 1, 3, 4]
+    print(migratoryBirds(arr))  # Output: 3
