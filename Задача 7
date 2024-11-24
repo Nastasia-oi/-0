@@ -1,0 +1,15 @@
+def miniMaxSum(arr):
+    # Calculate the total sum of the array
+    total_sum = sum(arr)
+    
+    # Find the minimum and maximum sums
+    min_sum = total_sum - max(arr)
+    max_sum = total_sum - min(arr)
+    
+    # Print the results as a single line
+    print(min_sum, max_sum)
+
+# Input handling
+if __name__ == "__main__":
+    arr = list(map(int, input().split()))  # Read the array
+    miniMaxSum(arr)
