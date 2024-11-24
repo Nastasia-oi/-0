@@ -1,0 +1,16 @@
+def sockMerchant(n, ar):
+    # Create a dictionary to count occurrences of each color
+    color_counts = {}
+    
+    for sock in ar:
+        if sock in color_counts:
+            color_counts[sock] += 1
+        else:
+            color_counts[sock] = 1
+    
+    # Calculate the number of pairs for each color
+    pairs = 0
+    for count in color_counts.values():
+        pairs += count // 2  # Each pair requires 2 socks
+    
+    return pairs
