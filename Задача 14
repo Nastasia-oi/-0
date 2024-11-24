@@ -1,28 +1,40 @@
-def breakingRecords(scores):
-    # Инициализация счётчиков и рекордов
-    max_count = 0
-    min_count = 0
-    max_score = scores[0]
-    min_score = scores[0]
-    
-    # Проход по играм начиная со второй
-    for score in scores[1:]:
-        if score > max_score:
-            max_score = score
-            max_count += 1
-        elif score < min_score:
-            min_score = score
-            min_count += 1
-    
-    # Возвращаем результат
-    return [max_count, min_count]
+#include <iostream>
+#include <vector>
+using namespace std;
 
-# Пример ввода и вывода
-if __name__ == "__main__":
-    # Пример 1
-    scores1 = [10, 5, 20, 20, 4, 5, 2, 25, 1]
-    print(breakingRecords(scores1))  # Вывод: [2, 4]
+// Function to calculate the number of times the player breaks the records
+vector<int> breakingRecords(const vector<int>& scores) {
+    // Initialize counters and the initial records
+    int max_count = 0, min_count = 0;
+    int max_score = scores[0], min_score = scores[0];
+    
+    // Iterate through the scores starting from the second game
+    for (size_t i = 1; i < scores.size(); ++i) {
+        int score = scores[i];
+        if (score > max_score) {
+            max_score = score;
+            max_count++;
+        } else if (score < min_score) {
+            min_score = score;
+            min_count++;
+        }
+    }
+    
+    // Return the result as a vector
+    return {max_count, min_count};
+}
 
-    # Пример 2
-    scores2 = [3, 4, 21, 36, 10, 28, 35, 5, 24, 42]
-    print(breakingRecords(scores2))  # Вывод: [4, 0]
+int main() {
+    // Test case 1
+    vector<int> scores1 = {10, 5, 20, 20, 4, 5, 2, 25, 1};
+    vector<int> result1 = breakingRecords(scores1);
+    cout << result1[0] << " " << result1[1] << endl;  // Output: 2 4
+
+    // Test case 2
+    vector<int> scores2 = {3, 4, 21, 36, 10, 28, 35, 5, 24, 42};
+    vector<int> result2 = breakingRecords(scores2);
+    cout << result2[0] << " " << result2[1] << endl;  // Output: 4 0
+
+    return 0;
+}
+
