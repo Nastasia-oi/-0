@@ -1,0 +1,28 @@
+def breakingRecords(scores):
+    # Инициализация счётчиков и рекордов
+    max_count = 0
+    min_count = 0
+    max_score = scores[0]
+    min_score = scores[0]
+    
+    # Проход по играм начиная со второй
+    for score in scores[1:]:
+        if score > max_score:
+            max_score = score
+            max_count += 1
+        elif score < min_score:
+            min_score = score
+            min_count += 1
+    
+    # Возвращаем результат
+    return [max_count, min_count]
+
+# Пример ввода и вывода
+if __name__ == "__main__":
+    # Пример 1
+    scores1 = [10, 5, 20, 20, 4, 5, 2, 25, 1]
+    print(breakingRecords(scores1))  # Вывод: [2, 4]
+
+    # Пример 2
+    scores2 = [3, 4, 21, 36, 10, 28, 35, 5, 24, 42]
+    print(breakingRecords(scores2))  # Вывод: [4, 0]
