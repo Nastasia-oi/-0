@@ -1,39 +1,53 @@
-def birthday(s, d, m):
-    n = len(s)
-    count = 0
+#include <iostream>
+#include <vector>
+using namespace std;
 
-    # Если длина массива меньше m, сразу возвращаем 0
-    if n < m:
-        return 0
+int birthday(const vector<int>& s, int d, int m) {
+    int n = s.size();
+    int count = 0;
 
-    # Начальная сумма первого окна
-    current_sum = sum(s[:m])
+    // If the length of the array is less than m, return 0
+    if (n < m) {
+        return 0;
+    }
 
-    # Проверяем первое окно
-    if current_sum == d:
-        count += 1
+    // Initial sum of the first window
+    int current_sum = 0;
+    for (int i = 0; i < m; ++i) {
+        current_sum += s[i];
+    }
 
-    # Сдвигаем окно
-    for i in range(m, n):
-        current_sum = current_sum - s[i - m] + s[i]
-        if current_sum == d:
-            count += 1
+    // Check the first window
+    if (current_sum == d) {
+        count++;
+    }
 
-    return count
+    // Slide the window and update the sum
+    for (int i = m; i < n; ++i) {
+        current_sum = current_sum - s[i - m] + s[i];
+        if (current_sum == d) {
+            count++;
+        }
+    }
 
-# Пример использования
-if __name__ == "__main__":
-    # Пример 1
-    s1 = [1, 2, 1, 3, 2]
-    d1, m1 = 3, 2
-    print(birthday(s1, d1, m1))  # Вывод: 2
+    return count;
+}
 
-    # Пример 2
-    s2 = [1, 1, 1, 1, 1, 1]
-    d2, m2 = 3, 2
-    print(birthday(s2, d2, m2))  # Вывод: 0
+int main() {
+    // Example 1
+    vector<int> s1 = {1, 2, 1, 3, 2};
+    int d1 = 3, m1 = 2;
+    cout << birthday(s1, d1, m1) << endl;  // Output: 2
 
-    # Пример 3
-    s3 = [4]
-    d3, m3 = 4, 1
-    print(birthday(s3, d3, m3))  # Вывод: 1
+    // Example 2
+    vector<int> s2 = {1, 1, 1, 1, 1, 1};
+    int d2 = 3, m2 = 2;
+    cout << birthday(s2, d2, m2) << endl;  // Output: 0
+
+    // Example 3
+    vector<int> s3 = {4};
+    int d3 = 4, m3 = 1;
+    cout << birthday(s3, d3, m3) << endl;  // Output: 1
+
+    return 0;
+}
