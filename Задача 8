@@ -1,14 +1,27 @@
-def birthdayCakeCandles(candles):
-    # Find the maximum height of the candles
-    tallest = max(candles)
-    
-    # Count how many candles have the maximum height
-    count = candles.count(tallest)
-    
-    return count
+#include <iostream>
+#include <vector>
+#include <algorithm> // For max function
+using namespace std;
 
-# Input handling
-if __name__ == "__main__":
-    n = int(input())  # Read the size of the array
-    candles = list(map(int, input().split()))  # Read the candle heights
-    print(birthdayCakeCandles(candles))
+int birthdayCakeCandles(const vector<int>& candles) {
+    // Find the maximum height of the candles
+    int tallest = *max_element(candles.begin(), candles.end());
+
+    // Count how many candles have the maximum height
+    int count = count(candles.begin(), candles.end(), tallest);
+
+    return count;
+}
+
+int main() {
+    int n;  // Number of candles
+    cin >> n;  // Read the number of candles
+    vector<int> candles(n);  // Array to store the candle heights
+    for (int i = 0; i < n; i++) {
+        cin >> candles[i];  // Read each candle height
+    }
+    
+    cout << birthdayCakeCandles(candles) << endl;  // Call function and print result
+
+    return 0;
+}
