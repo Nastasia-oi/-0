@@ -1,8 +1,24 @@
-def aVeryBigSum(ar):
-    return sum(ar)
+#include <iostream>
+#include <vector>
+#include <numeric> // Для std::accumulate
+using namespace std;
 
-# Input handling
-if __name__ == "__main__":
-    n = int(input())  # Read the size of the array
-    ar = list(map(int, input().split()))  # Read the array elements
-    print(aVeryBigSum(ar))  # Calculate and print the sum
+// Функція для обчислення суми великого масиву
+long long aVeryBigSum(const vector<long long>& ar) {
+    return accumulate(ar.begin(), ar.end(), 0LL); // Обчислюємо суму
+}
+
+int main() {
+    int n; // Розмір масиву
+    cin >> n; // Введення розміру масиву
+
+    vector<long long> ar(n); // Масив для збереження елементів
+    for (int i = 0; i < n; i++) {
+        cin >> ar[i]; // Введення кожного елемента
+    }
+
+    // Виклик функції для обчислення суми
+    cout << aVeryBigSum(ar) << endl;
+
+    return 0;
+}
