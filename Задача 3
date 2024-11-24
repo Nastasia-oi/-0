@@ -1,0 +1,8 @@
+def aVeryBigSum(ar):
+    return sum(ar)
+
+# Input handling
+if __name__ == "__main__":
+    n = int(input())  # Read the size of the array
+    ar = list(map(int, input().split()))  # Read the array elements
+    print(aVeryBigSum(ar))  # Calculate and print the sum
