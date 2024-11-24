@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Function to calculate the sum of array elements
+int simpleArraySum(const vector<int>& ar) {
+    int sum = 0; // Initialize sum to 0
+    for (int num : ar) { // Iterate over array elements
+        sum += num; // Add each element to the sum
+    }
+    return sum; // Return the final sum
+}
+
+int main() {
+    int n; // Size of the array
+    cin >> n; // Input the size of the array
+    
+    vector<int> ar(n); // Create a vector of size n
+    for (int i = 0; i < n; i++) {
+        cin >> ar[i]; // Input each array element
+    }
+    
+    // Call the function to compute the sum
+    int result = simpleArraySum(ar);
+    
+    // Output the result
+    cout << result << endl;
+
+    return 0;
+}
