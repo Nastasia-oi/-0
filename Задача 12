@@ -1,0 +1,17 @@
+def kangaroo(x1, v1, x2, v2):
+    # Check if the kangaroos can meet
+    if v1 == v2:  # If the velocities are the same
+        return "YES" if x1 == x2 else "NO"
+    else:
+        # Solve for the intersection point: x1 + n*v1 = x2 + n*v2
+        # Rearrange to: n = (x2 - x1) / (v1 - v2)
+        n = (x2 - x1) / (v1 - v2)
+        # They meet if n is a positive integer
+        return "YES" if n.is_integer() and n >= 0 else "NO"
+
+# Input handling
+if __name__ == "__main__":
+    # Read input values
+    x1, v1, x2, v2 = map(int, input().split())
+    # Call the function and print the result
+    print(kangaroo(x1, v1, x2, v2))
