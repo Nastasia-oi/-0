@@ -1,17 +1,25 @@
-def kangaroo(x1, v1, x2, v2):
-    # Check if the kangaroos can meet
-    if v1 == v2:  # If the velocities are the same
-        return "YES" if x1 == x2 else "NO"
-    else:
-        # Solve for the intersection point: x1 + n*v1 = x2 + n*v2
-        # Rearrange to: n = (x2 - x1) / (v1 - v2)
-        n = (x2 - x1) / (v1 - v2)
-        # They meet if n is a positive integer
-        return "YES" if n.is_integer() and n >= 0 else "NO"
+#include <iostream>
+using namespace std;
 
-# Input handling
-if __name__ == "__main__":
-    # Read input values
-    x1, v1, x2, v2 = map(int, input().split())
-    # Call the function and print the result
-    print(kangaroo(x1, v1, x2, v2))
+string kangaroo(int x1, int v1, int x2, int v2) {
+    // Check if the velocities are the same
+    if (v1 == v2) {
+        // If they start at the same position, they meet; otherwise, they don't
+        return (x1 == x2) ? "YES" : "NO";
+    } else {
+        // Solve for the intersection point: x1 + n*v1 = x2 + n*v2
+        // Rearranged to: n = (x2 - x1) / (v1 - v2)
+        double n = static_cast<double>(x2 - x1) / (v1 - v2);
+        // They meet if n is a positive integer
+        return (n >= 0 && n == static_cast<int>(n)) ? "YES" : "NO";
+    }
+}
+
+int main() {
+    int x1, v1, x2, v2;
+    // Read input values for the positions and velocities of the kangaroos
+    cin >> x1 >> v1 >> x2 >> v2;
+    // Call the function and print the result
+    cout << kangaroo(x1, v1, x2, v2) << endl;
+    return 0;
+}
