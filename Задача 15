@@ -1,0 +1,39 @@
+def birthday(s, d, m):
+    n = len(s)
+    count = 0
+
+    # Если длина массива меньше m, сразу возвращаем 0
+    if n < m:
+        return 0
+
+    # Начальная сумма первого окна
+    current_sum = sum(s[:m])
+
+    # Проверяем первое окно
+    if current_sum == d:
+        count += 1
+
+    # Сдвигаем окно
+    for i in range(m, n):
+        current_sum = current_sum - s[i - m] + s[i]
+        if current_sum == d:
+            count += 1
+
+    return count
+
+# Пример использования
+if __name__ == "__main__":
+    # Пример 1
+    s1 = [1, 2, 1, 3, 2]
+    d1, m1 = 3, 2
+    print(birthday(s1, d1, m1))  # Вывод: 2
+
+    # Пример 2
+    s2 = [1, 1, 1, 1, 1, 1]
+    d2, m2 = 3, 2
+    print(birthday(s2, d2, m2))  # Вывод: 0
+
+    # Пример 3
+    s3 = [4]
+    d3, m3 = 4, 1
+    print(birthday(s3, d3, m3))  # Вывод: 1
