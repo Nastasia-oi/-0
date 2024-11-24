@@ -1,0 +1,9 @@
+def pageCount(n, p):
+    # Calculate the number of page turns from the front
+    front_turns = p // 2
+    
+    # Calculate the number of page turns from the back
+    back_turns = (n // 2) - (p // 2)
+    
+    # Return the minimum of the two
+    return min(front_turns, back_turns)
