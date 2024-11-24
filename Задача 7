@@ -1,15 +1,33 @@
-def miniMaxSum(arr):
-    # Calculate the total sum of the array
-    total_sum = sum(arr)
-    
-    # Find the minimum and maximum sums
-    min_sum = total_sum - max(arr)
-    max_sum = total_sum - min(arr)
-    
-    # Print the results as a single line
-    print(min_sum, max_sum)
+#include <iostream>
+#include <vector>
+#include <algorithm> // For min and max functions
+using namespace std;
 
-# Input handling
-if __name__ == "__main__":
-    arr = list(map(int, input().split()))  # Read the array
-    miniMaxSum(arr)
+void miniMaxSum(const vector<int>& arr) {
+    // Calculate the total sum of the array
+    long long total_sum = 0;
+    for (int num : arr) {
+        total_sum += num;
+    }
+    
+    // Find the minimum and maximum sums
+    int min_element = *min_element(arr.begin(), arr.end());
+    int max_element = *max_element(arr.begin(), arr.end());
+
+    long long min_sum = total_sum - max_element;  // Sum excluding the maximum element
+    long long max_sum = total_sum - min_element;  // Sum excluding the minimum element
+
+    // Print the results as a single line
+    cout << min_sum << " " << max_sum << endl;
+}
+
+int main() {
+    vector<int> arr(5);  // Size of the array is fixed to 5
+    for (int i = 0; i < 5; i++) {
+        cin >> arr[i];  // Read the array elements
+    }
+    
+    miniMaxSum(arr);  // Call the function to compute the result
+
+    return 0;
+}
