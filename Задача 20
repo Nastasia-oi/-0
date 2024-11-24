@@ -1,9 +1,24 @@
-def pageCount(n, p):
-    # Calculate the number of page turns from the front
-    front_turns = p // 2
-    
-    # Calculate the number of page turns from the back
-    back_turns = (n // 2) - (p // 2)
-    
-    # Return the minimum of the two
-    return min(front_turns, back_turns)
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int pageCount(int n, int p) {
+    // Calculate the number of page turns from the front
+    int front_turns = p / 2;
+
+    // Calculate the number of page turns from the back
+    int back_turns = (n / 2) - (p / 2);
+
+    // Return the minimum of the two
+    return min(front_turns, back_turns);
+}
+
+int main() {
+    // Sample Input
+    int n = 5, p = 4;
+
+    // Function Call and Output
+    cout << pageCount(n, p) << endl;  // Output: 0
+
+    return 0;
+}
