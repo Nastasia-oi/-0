@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Function to compare triplets and calculate scores
+vector<int> compareTriplets(const vector<int>& a, const vector<int>& b) {
+    int aliceScore = 0, bobScore = 0;
+
+    // Compare each element of the triplets
+    for (int i = 0; i < 3; i++) {
+        if (a[i] > b[i]) {
+            aliceScore++; // Alice gets a point
+        } else if (a[i] < b[i]) {
+            bobScore++; // Bob gets a point
+        }
+    }
+
+    return {aliceScore, bobScore}; // Return scores as a vector
+}
+
+int main() {
+    vector<int> a(3), b(3);
+
+    // Input Alice's ratings
+    for (int i = 0; i < 3; i++) {
+        cin >> a[i];
+    }
+
+    // Input Bob's ratings
+    for (int i = 0; i < 3; i++) {
+        cin >> b[i];
+    }
+
+    // Calculate scores
+    vector<int> result = compareTriplets(a, b);
+
+    // Output the result
+    cout << result[0] << " " << result[1] << endl;
+
+    return 0;
+}
