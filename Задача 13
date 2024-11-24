@@ -1,0 +1,41 @@
+from math import gcd
+from functools import reduce
+
+# Helper function to compute the Least Common Multiple (LCM) of two numbers
+def lcm(x, y):
+    return (x * y) // gcd(x, y)
+
+# Function to compute LCM of an array
+def find_lcm(arr):
+    return reduce(lcm, arr)
+
+# Function to compute GCD of an array
+def find_gcd(arr):
+    return reduce(gcd, arr)
+
+def getTotalX(a, b):
+    # Step 1: Find LCM of array a
+    lcm_a = find_lcm(a)
+    
+    # Step 2: Find GCD of array b
+    gcd_b = find_gcd(b)
+    
+    # Step 3: Count numbers between the arrays
+    count = 0
+    multiple = lcm_a
+    while multiple <= gcd_b:
+        if gcd_b % multiple == 0:
+            count += 1
+        multiple += lcm_a
+    
+    return count
+
+# Example usage
+if __name__ == "__main__":
+    # Sample Input
+    a = [2, 4]
+    b = [16, 32, 96]
+    
+    # Function Call and Output
+    result = getTotalX(a, b)
+    print(result)  # Output: 3
