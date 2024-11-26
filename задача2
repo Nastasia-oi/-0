@@ -1,41 +1,26 @@
-#include <iostream>
-#include <vector>
-using namespace std;
+# Function to compare triplets and calculate scores
+def compare_triplets(a, b):
+    alice_score = 0  # Alice's score
+    bob_score = 0    # Bob's score
 
-// Function to compare triplets and calculate scores
-vector<int> compareTriplets(const vector<int>& a, const vector<int>& b) {
-    int aliceScore = 0, bobScore = 0;
+    # Compare elements
+    for i in range(3):
+        if a[i] > b[i]:
+            alice_score += 1  # Alice gets a point
+        elif a[i] < b[i]:
+            bob_score += 1    # Bob gets a point
 
-    // Compare each element of the triplets
-    for (int i = 0; i < 3; i++) {
-        if (a[i] > b[i]) {
-            aliceScore++; // Alice gets a point
-        } else if (a[i] < b[i]) {
-            bobScore++; // Bob gets a point
-        }
-    }
+    return [alice_score, bob_score]  # Return the result as a list
 
-    return {aliceScore, bobScore}; // Return scores as a vector
-}
+if __name__ == "__main__":
+    # Input Alice's ratings
+    a = list(map(int, input("Enter Alice's three ratings separated by space: ").split()))
+    
+    # Input Bob's ratings
+    b = list(map(int, input("Enter Bob's three ratings separated by space: ").split()))
 
-int main() {
-    vector<int> a(3), b(3);
+    # Calculate scores
+    result = compare_triplets(a, b)
 
-    // Input Alice's ratings
-    for (int i = 0; i < 3; i++) {
-        cin >> a[i];
-    }
-
-    // Input Bob's ratings
-    for (int i = 0; i < 3; i++) {
-        cin >> b[i];
-    }
-
-    // Calculate scores
-    vector<int> result = compareTriplets(a, b);
-
-    // Output the result
-    cout << result[0] << " " << result[1] << endl;
-
-    return 0;
-}
+    # Output the result
+    print(f"{result[0]} {result[1]}")
