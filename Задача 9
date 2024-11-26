@@ -1,37 +1,19 @@
-#include <iostream>
-#include <string>
-#include <iomanip> // For formatting
-using namespace std;
-
-string timeConversion(const string& s) {
-    // Extract the hour, minutes, seconds, and period (AM/PM) from the string
-    int hour = stoi(s.substr(0, 2));  // Convert the first two characters (hour) to an integer
-    string minutes_seconds = s.substr(2, 6);  // Extract the minutes and seconds part
-    string period = s.substr(8, 2);  // Extract the period (AM/PM)
-    
-    if (period == "AM") {
-        // Convert 12 AM to 00 for 24-hour format
-        if (hour == 12) {
-            hour = 0;
-        }
-    } else {  // PM
-        // Add 12 to the hour unless it's 12 PM (no change needed)
-        if (hour != 12) {
-            hour += 12;
-        }
-    }
-
-    // Format the hour as a 2-digit string and return the converted time
-    // Use stringstream for formatting the hour as a 2-digit number
-    stringstream ss;
-    ss << setfill('0') << setw(2) << hour;
-    return ss.str() + minutes_seconds;
-}
-
-int main() {
-    string s;  // Input time in 12-hour format
-    cin >> s;  // Read the time from input
-    cout << timeConversion(s) << endl;  // Convert and print the result
-
-    return 0;
-}
+def timeConversion(s):
+    # Extract the hour, minutes, seconds, and period (AM/PM) from the string
+    hour = int(s[:2])
+    minutes_seconds = s[2:8]
+    period = s[-2:]
+    if period == "AM":
+        # Convert 12 AM to 00 for 24-hour format
+        if hour == 12:
+            hour = 0
+    else:  # PM
+        # Add 12 to the hour unless it's 12 PM (no change needed)
+        if hour != 12:
+            hour += 12
+    # Format the hour as a 2-digit string and return the converted time
+    return f"{hour:02d}{minutes_seconds}"
+# Input handling
+if __name__ == "__main__":
+    s = input()  # Read the time in 12-hour format
+    print(timeConversion(s))
