@@ -1,33 +1,16 @@
-#include <iostream>
-#include <unordered_map>
-#include <vector>
-using namespace std;
-
-int sockMerchant(int n, const vector<int>& ar) {
-    // Create a map to count occurrences of each color
-    unordered_map<int, int> color_counts;
-
-    // Count the number of socks for each color
-    for (int sock : ar) {
-        color_counts[sock]++;
-    }
-
-    // Calculate the number of pairs for each color
-    int pairs = 0;
-    for (const auto& entry : color_counts) {
-        pairs += entry.second / 2;  // Each pair requires 2 socks
-    }
-
-    return pairs;
-}
-
-int main() {
-    // Sample Input
-    int n = 9;
-    vector<int> ar = {10, 20, 20, 10, 10, 30, 50, 10, 20};
-
-    // Function Call and Output
-    cout << sockMerchant(n, ar) << endl;  // Output: 3
-
-    return 0;
-}
+def sockMerchant(n, ar):
+    # Create a dictionary to count occurrences of each color
+    color_counts = {}
+    
+    for sock in ar:
+        if sock in color_counts:
+            color_counts[sock] += 1
+        else:
+            color_counts[sock] = 1
+    
+    # Calculate the number of pairs for each color
+    pairs = 0
+    for count in color_counts.values():
+        pairs += count // 2  # Each pair requires 2 socks
+    
+    return pairs
