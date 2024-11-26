@@ -1,36 +1,19 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-using namespace std;
-
-int migratoryBirds(const vector<int>& arr) {
-    // Initialize a frequency array for bird types (1 to 5)
-    vector<int> frequency(6, 0);  // Index 0 will remain unused
-
-    // Count the occurrences of each bird type
-    for (int bird : arr) {
-        frequency[bird]++;
-    }
-
-    // Find the type with the maximum frequency
-    int max_count = *max_element(frequency.begin(), frequency.end());
-    for (int bird_type = 1; bird_type <= 5; bird_type++) {
-        if (frequency[bird_type] == max_count) {
-            return bird_type;
-        }
-    }
-
-    return -1;  // In case no bird type is found, though this case shouldn't happen
-}
-
-int main() {
-    // Sample Input 0
-    vector<int> arr1 = {1, 4, 4, 4, 5, 3};
-    cout << migratoryBirds(arr1) << endl;  // Output: 4
-
-    // Sample Input 1
-    vector<int> arr2 = {1, 2, 3, 4, 5, 4, 3, 2, 1, 3, 4};
-    cout << migratoryBirds(arr2) << endl;  // Output: 3
-
-    return 0;
-}
+def migratoryBirds(arr):
+    # Initialize a frequency array for bird types (1 to 5)
+    frequency = [0] * 6  # Index 0 will remain unused
+    # Count the occurrences of each bird type
+    for bird in arr:
+        frequency[bird] += 1
+    # Find the type with the maximum frequency
+    max_count = max(frequency)
+    for bird_type in range(1, 6):
+        if frequency[bird_type] == max_count:
+            return bird_type
+# Example usage
+if __name__ == "__main__":
+    # Sample Input 0
+    arr = [1, 4, 4, 4, 5, 3]
+    print(migratoryBirds(arr))  # Output: 4
+    # Sample Input 1
+    arr = [1, 2, 3, 4, 5, 4, 3, 2, 1, 3, 4]
+    print(migratoryBirds(arr))  # Output: 3
