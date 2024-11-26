@@ -1,52 +1,28 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
-void countApplesAndOranges(int s, int t, int a, int b, const vector<int>& apples, const vector<int>& oranges) {
-    // Calculate the final positions of the apples
-    int apples_on_house = 0;
-    for (int apple : apples) {
-        int apple_position = a + apple;
-        if (s <= apple_position && apple_position <= t) {
-            apples_on_house++;
-        }
-    }
-
-    // Calculate the final positions of the oranges
-    int oranges_on_house = 0;
-    for (int orange : oranges) {
-        int orange_position = b + orange;
-        if (s <= orange_position && orange_position <= t) {
-            oranges_on_house++;
-        }
-    }
-
-    // Print the results
-    cout << apples_on_house << endl;
-    cout << oranges_on_house << endl;
-}
-
-int main() {
-    int s, t, a, b, m, n;
-    // Read Sam's house range
-    cin >> s >> t;
-    // Read tree locations
-    cin >> a >> b;
-    // Read number of apples and oranges
-    cin >> m >> n;
+def countApplesAndOranges(s, t, a, b, apples, oranges):
+    # Calculate the final positions of the apples and oranges
+    apple_positions = [a + d for d in apples]
+    orange_positions = [b + d for d in oranges]
     
-    vector<int> apples(m), oranges(n);
-    // Read distances for apples
-    for (int i = 0; i < m; i++) {
-        cin >> apples[i];
-    }
-    // Read distances for oranges
-    for (int i = 0; i < n; i++) {
-        cin >> oranges[i];
-    }
+    # Count the apples that fall on Sam's house
+    apples_on_house = sum(1 for pos in apple_positions if s <= pos <= t)
     
-    // Call the function
-    countApplesAndOranges(s, t, a, b, apples, oranges);
+    # Count the oranges that fall on Sam's house
+    oranges_on_house = sum(1 for pos in orange_positions if s <= pos <= t)
+    
+    # Print the results
+    print(apples_on_house)
+    print(oranges_on_house)
 
-    return 0;
-}
+# Input handling
+if __name__ == "__main__":
+    # Read Sam's house range
+    s, t = map(int, input().split())
+    # Read tree locations
+    a, b = map(int, input().split())
+    # Read number of apples and oranges
+    m, n = map(int, input().split())
+    # Read distances for apples and oranges
+    apples = list(map(int, input().split()))
+    oranges = list(map(int, input().split()))
+    # Call the function
+    countApplesAndOranges(s, t, a, b, apples, oranges)
