@@ -1,36 +1,19 @@
-#include <iostream>
-#include <vector>
-using namespace std;
+def gradingStudents(grades):
+    rounded_grades = []
+    for grade in grades:
+        if grade < 38:  # No rounding if grade is less than 38
+            rounded_grades.append(grade)
+        else:
+            next_multiple_of_5 = (grade + 4) // 5 * 5  # Find the next multiple of 5
+            if next_multiple_of_5 - grade < 3:  # Round up if the difference is less than 3
+                rounded_grades.append(next_multiple_of_5)
+            else:
+                rounded_grades.append(grade)
+    return rounded_grades
 
-vector<int> gradingStudents(const vector<int>& grades) {
-    vector<int> rounded_grades;
-    for (int grade : grades) {
-        if (grade < 38) {  // No rounding if grade is less than 38
-            rounded_grades.push_back(grade);
-        } else {
-            int next_multiple_of_5 = (grade + 4) / 5 * 5;  // Find the next multiple of 5
-            if (next_multiple_of_5 - grade < 3) {  // Round up if the difference is less than 3
-                rounded_grades.push_back(next_multiple_of_5);
-            } else {
-                rounded_grades.push_back(grade);
-            }
-        }
-    }
-    return rounded_grades;
-}
-
-int main() {
-    int n;  // Number of students
-    cin >> n;  // Read the number of students
-    vector<int> grades(n);  // Vector to store the grades
-    for (int i = 0; i < n; i++) {
-        cin >> grades[i];  // Read each student's grade
-    }
-
-    vector<int> result = gradingStudents(grades);  // Call the function to round the grades
-    for (int grade : result) {
-        cout << grade << endl;  // Print the rounded grades
-    }
-
-    return 0;
-}
+# Input handling
+if __name__ == "__main__":
+    n = int(input())  # Number of students
+    grades = [int(input()) for _ in range(n)]  # List of grades
+    result = gradingStudents(grades)
+    print("\n".join(map(str, result)))
