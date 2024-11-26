@@ -1,60 +1,44 @@
-#include <iostream>
-#include <vector>
-#include <numeric> // For gcd
-using namespace std;
+from math import gcd
+from functools import reduce
 
-// Helper function to compute the Least Common Multiple (LCM) of two numbers
-int lcm(int x, int y) {
-    return (x * y) / gcd(x, y);
-}
+# Helper function to compute the Least Common Multiple (LCM) of two numbers
+def lcm(x, y):
+    return (x * y) // gcd(x, y)
 
-// Function to compute LCM of an array
-int find_lcm(const vector<int>& arr) {
-    int result = arr[0];
-    for (size_t i = 1; i < arr.size(); ++i) {
-        result = lcm(result, arr[i]);
-    }
-    return result;
-}
+# Function to compute LCM of an array
+def find_lcm(arr):
+    return reduce(lcm, arr)
 
-// Function to compute GCD of an array
-int find_gcd(const vector<int>& arr) {
-    int result = arr[0];
-    for (size_t i = 1; i < arr.size(); ++i) {
-        result = gcd(result, arr[i]);
-    }
-    return result;
-}
+# Function to compute GCD of an array
+def find_gcd(arr):
+    return reduce(gcd, arr)
 
-// Function to calculate how many numbers between the LCM of array a and GCD of array b
-int getTotalX(const vector<int>& a, const vector<int>& b) {
-    // Step 1: Find LCM of array a
-    int lcm_a = find_lcm(a);
+def getTotalX(a, b):
+    # Step 1: Find LCM of array a
+    lcm_a = find_lcm(a)
     
-    // Step 2: Find GCD of array b
-    int gcd_b = find_gcd(b);
+    # Step 2: Find GCD of array b
+    gcd_b = find_gcd(b)
     
-    // Step 3: Count numbers between the arrays
-    int count = 0;
-    int multiple = lcm_a;
-    while (multiple <= gcd_b) {
-        if (gcd_b % multiple == 0) {
-            count++;
-        }
-        multiple += lcm_a;
-    }
+    # Step 3: Count numbers between the arrays
+    count = 0
+    multiple = lcm_a
+    while multiple <= gcd_b:
+        if gcd_b % multiple == 0:
+            count += 1
+        multiple += lcm_a
     
-    return count;
-}
+    return count
 
-int main() {
-    // Sample Input
-    vector<int> a = {2, 4};
-    vector<int> b = {16, 32, 96};
+# Example usage
+if __name__ == "__main__":
+    # Sample Input
+    a = [2, 4]
+    b = [16, 32, 96]
     
-    // Function Call and Output
-    int result = getTotalX(a, b);
-    cout << result << endl;  // Output: 3
+    # Function Call and Output
+    result = getTotalX(a, b)
+    print(result)  # Output: 3: 3
 
     return 0;
 }
