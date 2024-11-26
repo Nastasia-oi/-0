@@ -1,30 +1,25 @@
-#include <iostream>
-#include <vector>
-using namespace std;
+def breaking_records(scores):
+    max_count = 0  # Counter for breaking the maximum record
+    min_count = 0  # Counter for breaking the minimum record
+    max_score = scores[0]  # Initial maximum score
+    min_score = scores[0]  # Initial minimum score
 
-// Function to calculate the sum of array elements
-int simpleArraySum(const vector<int>& ar) {
-    int sum = 0; // Initialize sum to 0
-    for (int num : ar) { // Iterate over array elements
-        sum += num; // Add each element to the sum
-    }
-    return sum; // Return the final sum
-}
+    # Loop through the scores starting from the second game
+    for score in scores[1:]:
+        if score > max_score:
+            max_score = score
+            max_count += 1
+        elif score < min_score:
+            min_score = score
+            min_count += 1
 
-int main() {
-    int n; // Size of the array
-    cin >> n; // Input the size of the array
-    
-    vector<int> ar(n); // Create a vector of size n
-    for (int i = 0; i < n; i++) {
-        cin >> ar[i]; // Input each array element
-    }
-    
-    // Call the function to compute the sum
-    int result = simpleArraySum(ar);
-    
-    // Output the result
-    cout << result << endl;
+    # Return the result as a list
+    return [max_count, min_count]
 
-    return 0;
-}
+if __name__ == "__main__":
+    n = int(input())  # Input the number of games
+    scores = list(map(int, input().split()))  # Input the scores as space-separated values
+
+    # Call the function and print the result
+    result = breaking_records(scores)
+    print(result[0], result[1])  # Print the number of max and min record breaks
