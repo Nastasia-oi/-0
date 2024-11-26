@@ -1,36 +1,16 @@
-#include <iostream>
-#include <vector>
-#include <cmath> // Для функції abs
-using namespace std;
-
-// Функція для обчислення різниці між сумами діагоналей
-int diagonalDifference(const vector<vector<int>>& arr) {
-    int n = arr.size(); // Розмір матриці
-    int primary_diagonal = 0;   // Сума головної діагоналі
-    int secondary_diagonal = 0; // Сума побічної діагоналі
-
-    for (int i = 0; i < n; i++) {
-        primary_diagonal += arr[i][i];         // Додаємо елемент головної діагоналі
-        secondary_diagonal += arr[i][n - 1 - i]; // Додаємо елемент побічної діагоналі
-    }
-
-    // Повертаємо абсолютну різницю між сумами
-    return abs(primary_diagonal - secondary_diagonal);
-}
-
-int main() {
-    int n; // Розмір матриці
-    cin >> n; // Введення розміру матриці
-
-    vector<vector<int>> arr(n, vector<int>(n)); // Ініціалізація матриці розміром n x n
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cin >> arr[i][j]; // Введення елементів матриці
-        }
-    }
-
-    // Виклик функції та виведення результату
-    cout << diagonalDifference(arr) << endl;
-
-    return 0;
-}
+def diagonalDifference(arr):
+    n = len(arr)  # Size of the square matrix
+    primary_diagonal = 0
+    secondary_diagonal = 0
+    for i in range(n):
+        primary_diagonal += arr[i][i]  # Sum of the primary diagonal
+        secondary_diagonal += arr[i][n - 1 - i]  # Sum of the secondary diagonal
+    # Return the absolute difference between the two sums
+    return abs(primary_diagonal - secondary_diagonal)
+# Input handling
+if __name__ == "__main__":
+    n = int(input())  # Read the size of the matrix
+    arr = []
+    for _ in range(n):
+        arr.append(list(map(int, input().split())))  # Read each row of the matrix
+    print(diagonalDifference(arr))  # Compute and print the result
